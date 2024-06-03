@@ -79,9 +79,12 @@ RUN addgroup -g 1000 node \
   && apk del .build-deps \
   # smoke tests
   && node --version \
-  && npm --version
+  && npm --version \
+  && apk add ca-certificates && update-ca-certificates
+
 
 ENV YARN_VERSION 1.22.19
+
 
 RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   # use pre-existing gpg directory, see https://github.com/nodejs/docker-node/pull/1895#issuecomment-1550389150
